@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpFlow - About Us</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: #ffffff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(66, 153, 225, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(72, 187, 120, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(159, 122, 234, 0.02) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #2d3748;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            background: linear-gradient(135deg, #4299e1, #48bb78, #9f7aea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo::before {
+            content: "⚡";
+            font-size: 2rem;
+            -webkit-text-fill-color: #4299e1;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: #4a5568;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(66, 153, 225, 0.08), rgba(72, 187, 120, 0.08));
+            border-radius: 50px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover::before {
+            opacity: 1;
+        }
+
+        .nav-links a:hover {
+            color: #2d3748;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            color: #4299e1;
+            background: rgba(66, 153, 225, 0.1);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-nav {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-login {
+            background: rgba(66, 153, 225, 0.08);
+            color: #4299e1;
+            border: 2px solid rgba(66, 153, 225, 0.2);
+        }
+
+        .btn-register {
+            background: linear-gradient(135deg, #4299e1, #48bb78);
+            color: #fff;
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 120px;
+            padding-bottom: 60px;
+        }
+
+        /* Hero Section */
+        .about-hero {
+            background: #ffffff;
+            margin-bottom: 60px;
+            border-radius: 30px;
+            padding: 5rem 3rem;
+            text-align: center;
+            border: 1px solid rgba(226, 232, 240, 0.6);
+            animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(66, 153, 225, 0.02), rgba(72, 187, 120, 0.02), rgba(159, 122, 234, 0.01));
+            border-radius: 30px;
+            z-index: -1;
+        }
+
+        .about-hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #2d3748, #4299e1, #48bb78);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .about-hero p {
+            font-size: 1.4rem;
+            color: #718096;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Mission Vision Values */
+        .mvv-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        .mvv-card {
+            background: #ffffff;
+            border-radius: 25px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mvv-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #4299e1, #48bb78, #9f7aea);
+            border-radius: 25px;
+            z-index: -2;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .mvv-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #ffffff;
+            border-radius: 25px;
+            z-index: -1;
+        }
+
+        .mvv-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .mvv-card:hover::before {
+            opacity: 1;
+        }
+
+        .mvv-icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .mvv-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #2d3748;
+        }
+
+        .mvv-card p {
+            color: #718096;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Story Section */
+        .story-section {
+            background: #ffffff;
+            border-radius: 30px;
+            padding: 4rem 3rem;
+            margin-bottom: 5rem;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+        }
+
+        .story-section h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: #2d3748;
+            text-align: center;
+        }
+
+        .story-section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #4299e1, #48bb78);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .story-text {
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+
+        .story-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .story-image {
+            background: linear-gradient(135deg, rgba(66, 153, 225, 0.1), rgba(72, 187, 120, 0.1));
+            border-radius: 20px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #718096;
+        }
+
+        /* Team Section */
+        .team-section {
+            margin-bottom: 5rem;
+        }
+
+        .team-section h2 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .team-subtitle {
+            text-align: center;
+            color: #718096;
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .team-member {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .team-member:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4299e1, #48bb78);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .member-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-role {
+            color: #4299e1;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .member-bio {
+            color: #718096;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: #ffffff;
+            border-radius: 30px;
+            padding: 4rem 3rem;
+            margin-bottom: 4rem;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(66, 153, 225, 0.02), rgba(72, 187, 120, 0.02));
+            z-index: -1;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: scale(1.05);
+        }
+
+        .stat-item h3 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(135deg, #4299e1, #48bb78);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-item p {
+            color: #4a5568;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(45, 55, 72, 0.98);
+            color: #fff;
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(226, 232, 240, 0.2);
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            color: #4299e1;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            line-height: 2;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #48bb78;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .auth-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .btn-nav {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .about-hero {
+                padding: 3rem 2rem;
+                margin-bottom: 40px;
+            }
+            
+            .about-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .mvv-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .mvv-card {
+                padding: 2.5rem 2rem;
+            }
+            
+            .story-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .about-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .mvv-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .story-section {
+                padding: 2.5rem 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">EmpFlow</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about" class="active">About</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="/login" class="btn-nav btn-login">Login</a>
+                <a href="/register" class="btn-nav btn-register">Register</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="about-hero">
+                <h1>About EmpFlow</h1>
+                <p>Empowering organizations with innovative employee management solutions. We believe in creating seamless workflows that help businesses and their people thrive together.</p>
+            </section>
+
+            <!-- Mission, Vision, Values -->
+            <section class="mvv-section">
+                <div class="mvv-card">
+                    <div class="mvv-icon">🎯</div>
+                    <h3>Our Mission</h3>
+                    <p>To revolutionize employee management by providing intuitive, powerful tools that streamline HR processes and enhance workplace productivity while fostering positive employee experiences.</p>
+                </div>
+                
+                <div class="mvv-card">
+                    <div class="mvv-icon">🔮</div>
+                    <h3>Our Vision</h3>
+                    <p>To be the leading global platform for employee management, creating a world where every organization can efficiently manage their workforce and every employee feels valued and engaged.</p>
+                </div>
+                
+                <div class="mvv-card">
+                    <div class="mvv-icon">⭐</div>
+                    <h3>Our Values</h3>
+                    <p>Innovation, integrity, and inclusivity drive everything we do. We prioritize user experience, data security, and continuous improvement to deliver exceptional value to our clients.</p>
+                </div>
+            </section>
+
+            <!-- Story Section -->
+            <section class="story-section">
+                <h2>Our Story</h2>
+                <div class="story-content">
+                    <div class="story-text">
+                        <p>Founded in 2020, EmpFlow emerged from a simple observation: employee management was becoming increasingly complex while technology solutions remained fragmented and difficult to use.</p>
+                        
+                        <p>Our founders, experienced HR professionals and technology experts, envisioned a unified platform that would simplify workforce management while providing powerful insights and automation capabilities.</p>
+                        
+                        <p>Today, EmpFlow serves thousands of organizations worldwide, from startups to enterprise companies, helping them streamline their HR processes and create better workplace experiences for their employees.</p>
+                    </div>
+                    <div class="story-image">
+                        📈
+                    </div>
+                </div>
+            </section>
+
+            <!-- Team Section -->
+            <section class="team-section">
+                <h2>Meet Our Team</h2>
+                <p class="team-subtitle">The passionate professionals behind EmpFlow</p>
+                
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-avatar">👨‍💼</div>
+                        <h4 class="member-name">Rajesh Kumar</h4>
+                        <p class="member-role">CEO & Co-Founder</p>
+                        <p class="member-bio">15+ years in HR technology and business strategy. Passionate about creating solutions that make work life better.</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-avatar">👩‍💻</div>
+                        <h4 class="member-name">Priya Sharma</h4>
+                        <p class="member-role">CTO & Co-Founder</p>
+                        <p class="member-bio">Expert in scalable software architecture and AI. Leads our technical vision and product development.</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-avatar">👨‍🎨</div>
+                        <h4 class="member-name">Amit Patel</h4>
+                        <p class="member-role">Head of Product</p>
+                        <p class="member-bio">UX specialist focused on creating intuitive interfaces that solve real business problems.</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-avatar">👩‍💼</div>
+                        <h4 class="member-name">Sneha Singh</h4>
+                        <p class="member-role">VP of Customer Success</p>
+                        <p class="member-bio">Dedicated to ensuring our clients achieve maximum value from the EmpFlow platform.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>10K+</h3>
+                        <p>Companies Trust Us</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>500K+</h3>
+                        <p>Employees Managed</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>99.9%</h3>
+                        <p>Uptime Guarantee</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>50+</h3>
+                        <p>Countries Served</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>EmpFlow</h4>
+                    <p>Empowering organizations with innovative employee management solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <p><a href="/Home">Home</a></p>
+                    <p><a href="/about">About</a></p>
+                    <p><a href="/services">Services</a></p>
+                    <p><a href="/contact">Contact</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <p><a href="/help">Help Center</a></p>
+                    <p><a href="/documentation">Documentation</a></p>
+                    <p><a href="/api">API Reference</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>info@empflow.com</p>
+                    <p>+91 12345 67890</p>
+                    <p>Pimpri, Maharashtra</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 EmpFlow. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpFlow - Contact Us</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: #ffffff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(66, 153, 225, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(72, 187, 120, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(159, 122, 234, 0.02) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #2d3748;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            background: linear-gradient(135deg, #4299e1, #48bb78, #9f7aea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo::before {
+            content: "⚡";
+            font-size: 2rem;
+            -webkit-text-fill-color: #4299e1;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: #4a5568;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(66, 153, 225, 0.08), rgba(72, 187, 120, 0.08));
+            border-radius: 50px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover::before {
+            opacity: 1;
+        }
+
+        .nav-links a:hover {
+            color: #2d3748;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            color: #4299e1;
+            background: rgba(66, 153, 225, 0.1);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-nav {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-login {
+            background: rgba(66, 153, 225, 0.08);
+            color: #4299e1;
+            border: 2px solid rgba(66, 153, 225, 0.2);
+        }
+
+        .btn-register {
+            background: linear-gradient(135deg, #4299e1, #48bb78);
+            color: #fff;
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 120px;
+            padding-bottom: 60px;
+        }
+
+        .contact-hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .contact-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #2d3748, #4299e1, #48bb78);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .contact-hero p {
+            font-size: 1.3rem;
+            color: #718096;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .contact-form-section {
+            background: #ffffff;
+            border-radius: 25px;
+            padding: 3rem 2.5rem;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+        }
+
+        .contact-info-section {
+            background: #ffffff;
+            border-radius: 25px;
+            padding: 3rem 2.5rem;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #4299e1, #48bb78);
+            margin-top: 0.5rem;
+            border-radius: 2px;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-group {
+            flex: 1;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .form-group:focus-within {
+            transform: translateY(-2px);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: #2d3748;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 2px solid rgba(226, 232, 240, 0.8);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #ffffff;
+            color: #2d3748;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .form-group input:hover,
+        .form-group textarea:hover,
+        .form-group select:hover {
+            border-color: #cbd5e0;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #4299e1, #48bb78);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 1.2rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(66, 153, 225, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Contact Info */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .info-item:hover {
+            background: rgba(66, 153, 225, 0.02);
+            border-color: rgba(66, 153, 225, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+            min-width: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(66, 153, 225, 0.1), rgba(72, 187, 120, 0.1));
+            border-radius: 12px;
+            padding: 0.8rem;
+        }
+
+        .info-content h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-content p {
+            color: #718096;
+            line-height: 1.6;
+        }
+
+        .info-content a {
+            color: #4299e1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-content a:hover {
+            color: #3182ce;
+            text-decoration: underline;
+        }
+
+        /* Office Hours */
+        .office-hours {
+            background: linear-gradient(135deg, rgba(66, 153, 225, 0.05), rgba(72, 187, 120, 0.05));
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .office-hours h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .hours-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+        }
+
+        .hours-item:last-child {
+            border-bottom: none;
+        }
+
+        .hours-day {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .hours-time {
+            color: #718096;
+        }
+
+        /* Map Section */
+        .map-section {
+            grid-column: 1 / -1;
+            background: #ffffff;
+            border-radius: 25px;
+            padding: 3rem 2.5rem;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            text-align: center;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(66, 153, 225, 0.1), rgba(72, 187, 120, 0.1));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #718096;
+            margin-top: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(45, 55, 72, 0.98);
+            color: #fff;
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(226, 232, 240, 0.2);
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            color: #4299e1;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            line-height: 2;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #48bb78;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .auth-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .btn-nav {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .contact-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .contact-form-section,
+            .contact-info-section {
+                padding: 2rem 1.5rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .info-item {
+                padding: 1rem;
+            }
+            
+            .info-icon {
+                font-size: 2rem;
+                min-width: 2.5rem;
+                padding: 0.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .contact-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .contact-form-section,
+            .contact-info-section {
+                padding: 1.5rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">EmpFlow</a>
+            <ul class="nav-links">
+               <p><a href="Home.html">Home</a></p>
+                    <p><a href="about.html">About</a></p>
+                    <p><a href="/services">Services</a></p>
+                  
+                <li><a href="/contact" class="active">Contact</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="/login" class="btn-nav btn-login">Login</a>
+                <a href="/register" class="btn-nav btn-register">Register</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="contact-hero">
+                <h1>Get in Touch</h1>
+                <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-form-section">
+                    <h2 class="section-title">Send us a Message</h2>
+                    <form class="contact-form" action="/contact" method="POST">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="billing">Billing Question</option>
+                                <option value="partnership">Partnership</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell us how we can help you..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+
+                <div class="contact-info-section">
+                    <h2 class="section-title">Contact Information</h2>
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <h3>Our Address</h3>
+                                <p>123 Business Avenue<br>
+                                   Suite 100<br>
+                                   Pimpri, Maharashtra 411018<br>
+                                   India</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <h3>Phone Number</h3>
+                                <p><a href="tel:+911234567890">+91 12345 67890</a><br>
+                                   <a href="tel:+919876543210">+91 98765 43210</a></p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">📧</div>
+                            <div class="info-content">
+                                <h3>Email Address</h3>
+                                <p><a href="mailto:info@empflow.com">info@empflow.com</a><br>
+                                   <a href="mailto:support@empflow.com">support@empflow.com</a></p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">🌐</div>
+                            <div class="info-content">
+                                <h3>Website</h3>
+                                <p><a href="https://empflow.com" target="_blank">www.empflow.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="office-hours">
+                        <h3>Office Hours</h3>
+                        <div class="hours-list">
+                            <div class="hours-item">
+                                <span class="hours-day">Monday - Friday</span>
+                                <span class="hours-time">9:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="hours-day">Saturday</span>
+                                <span class="hours-time">10:00 AM - 4:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="hours-day">Sunday</span>
+                                <span class="hours-time">Closed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-section">
+                    <h2 class="section-title">Find Us</h2>
+                    <p>Located in the heart of Pimpri, Maharashtra. Easy access via public transport and ample parking available.</p>
+                    <div class="map-placeholder">
+                        🗺️
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>EmpFlow</h4>
+                    <p>Empowering organizations with innovative employee management solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <p><a href="/">Home</a></p>
+                    <p><a href="/about">About</a></p>
+                    <p><a href="/services">Services</a></p>
+                    <p><a href="/contact">Contact</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <p><a href="/help">Help Center</a></p>
+                    <p><a href="/documentation">Documentation</a></p>
+                    <p><a href="/api">API Reference</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>info@empflow.com</p>
+                    <p>+91 12345 67890</p>
+                    <p>Pimpri, Maharashtra</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 EmpFlow. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

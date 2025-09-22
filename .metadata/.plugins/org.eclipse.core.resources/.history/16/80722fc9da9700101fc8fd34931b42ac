@@ -1,0 +1,74 @@
+package com.jbk;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+@WebServlet("/login")
+public class Login extends HttpServlet {
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+
+		try {
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:8000/emp_project", "root",
+					"Shweta@123");
+
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM registration WHERE email=? AND password=?");
+			ps.setString(1, email);
+			ps.setString(2, password);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+
+				RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
+				rd.forward(request, response);
+				
+				 request.setAttribute("empId", rs.getInt("empId"));
+	                request.setAttribute("fname", rs.getString("fname"));
+	                request.setAttribute("lname", rs.getString("lname"));
+	                request.setAttribute("email", rs.getString("email"));
+	                request.setAttribute("mobile", rs.getLong("mobile"));
+	                request.setAttribute("age", rs.getInt("age"));
+	                request.setAttribute("gender", rs.getString("gender"));
+	                request.setAttribute("department", rs.getString("department"));
+	                request.setAttribute("salary", rs.getInt("salary"));
+	                request.setAttribute("experience", rs.getString("experience"));
+	                request.setAttribute("address", rs.getString("address"));
+	                request.setAttribute("city", rs.getString("city"));
+	                request.setAttribute("state", rs.getString("state"));
+	                request.setAttribute("country", rs.getString("country"));
+			} else {
+
+				out.println("<p style='color:red'>Invalid Email or Password!</p>");
+				RequestDispatcher rd = request.getRequestDispatcher("login.html");
+				rd.include(request, response);
+			}
+
+			conn.close();
+
+		} catch (Exception e) {
+			out.println("<h3 style='color:red'>Error: " + e.getMessage() + "</h3>");
+		}
+	}
+}

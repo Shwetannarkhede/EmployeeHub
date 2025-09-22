@@ -1,0 +1,60 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .profile-container {
+            width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .detail {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .label {
+            font-weight: bold;
+            color: #555;
+        }
+        .back-link {
+            display: block;
+            margin: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h2>Employee Profile</h2>
+
+        <div class="detail"><span class="label">Employee ID:</span> ${empId}</div>
+        <div class="detail"><span class="label">First Name:</span> ${fname}</div>
+        <div class="detail"><span class="label">Last Name:</span> ${lname}</div>
+        <div class="detail"><span class="label">Email:</span> ${email}</div>
+        <div class="detail"><span class="label">Mobile:</span> ${mobile}</div>
+        <div class="detail"><span class="label">Age:</span> ${age}</div>
+        <div class="detail"><span class="label">Gender:</span> ${gender}</div>
+        <div class="detail"><span class="label">Department:</span> ${department}</div>
+        <div class="detail"><span class="label">Salary:</span> ${salary}</div>
+        <div class="detail"><span class="label">Experience:</span> ${experience}</div>
+        <div class="detail"><span class="label">Address:</span> ${address}, ${city}, ${state}, ${country}</div>
+
+        <a href="login.html" class="back-link">Logout / Back to Login</a>
+    </div>
+</body>
+</html>
