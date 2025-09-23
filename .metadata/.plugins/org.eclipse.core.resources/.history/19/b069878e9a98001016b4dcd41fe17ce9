@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Profile</title>
+    <link rel="stylesheet" href="profile.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f6fa;
+            margin: 0;
+            padding: 0;
+        }
+        .profile-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        .profile-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .profile-header h2 {
+            margin: 0;
+            font-size: 26px;
+        }
+        .profile-header p {
+            color: gray;
+            margin: 5px 0 0 0;
+        }
+        .profile-info {
+            margin-top: 20px;
+        }
+        .profile-info div {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .profile-info div:last-child {
+            border-bottom: none;
+        }
+        .profile-actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .profile-actions a {
+            text-decoration: none;
+            color: white;
+            background-color: #2f3640;
+            padding: 10px 25px;
+            border-radius: 5px;
+            margin: 0 10px;
+        }
+        .profile-actions a:hover {
+            background-color: #353b48;
+        }
+    </style>
+</head>
+<body>
+
+<div class="profile-container">
+    <div class="profile-header">
+        <h2>Shweta Narkhede</h2>
+        <p>HR Manager</p>
+        <p>Email: shweta@gmail.com</p>
+    </div>
+
+    <div class="profile-info">
+        <div>
+            <span>Employee ID:</span>
+            <span>HR001</span>
+        </div>
+        <div>
+            <span>Department:</span>
+            <span>Human Resources</span>
+        </div>
+        <div>
+            <span>Phone:</span>
+            <span>+91 9876543210</span>
+        </div>
+        <div>
+            <span>Experience:</span>
+            <span>5 Years</span>
+        </div>
+    </div>
+
+    <div class="profile-actions">
+        <a href="directory.jsp">View Employee Directory</a>
+        <a href="login.html">Logout</a>
+    </div>
+</div>
+
+</body>
+</html>

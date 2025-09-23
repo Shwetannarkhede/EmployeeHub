@@ -1,0 +1,49 @@
+<%@ page import="java.sql.*" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Directory</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f9; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; background: #fff; }
+        th, td { padding: 10px; border: 1px solid #ddd; text-align: left; font-size: 14px; }
+        th { background: #007bff; color: #fff; }
+        tr:nth-child(even) { background: #f9f9f9; }
+    </style>
+</head>
+<body>
+    <h2>Employee Directory</h2>
+    <table>
+        <tr>
+            <th>ID</th><th>First Name</th><th>Last Name</th>
+            <th>Email</th><th>Phone</th><th>Age</th>
+            <th>Gender</th><th>Department</th><th>Salary</th>
+            <th>Experience</th><th>Address</th><th>City</th>
+            <th>State</th><th>Country</th><th>Password</th>
+        </tr>
+        <%
+            ResultSet rs = (ResultSet) request.getAttribute("resultSet");
+            while ( rs.next()) {
+        %>
+        <tr>
+            <td><%= rs.getInt("empId") %></td>
+            <td><%= rs.getString("fname") %></td>
+            <td><%= rs.getString("lname") %></td>
+            <td><%= rs.getString("email") %></td>
+            <td><%= rs.getLong("mobile") %></td>
+            <td><%= rs.getInt("age") %></td>
+            <td><%= rs.getString("gender") %></td>
+            <td><%= rs.getString("department") %></td>
+            <td><%= rs.getInt("salary") %></td>
+            <td><%= rs.getString("experience") %></td>
+            <td><%= rs.getString("address") %></td>
+            <td><%= rs.getString("city") %></td>
+            <td><%= rs.getString("state") %></td>
+            <td><%= rs.getString("country") %></td>
+            <td><%= rs.getString("password") %></td>
+        </tr>
+        <% } %>
+    </table>
+</body>
+</html>

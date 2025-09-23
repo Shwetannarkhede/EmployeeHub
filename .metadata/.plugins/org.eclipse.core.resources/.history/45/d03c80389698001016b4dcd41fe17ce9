@@ -1,0 +1,46 @@
+package com.jbk;
+
+
+	import java.io.IOException;
+	import java.io.PrintWriter;
+	import java.sql.Connection;
+	import java.sql.DriverManager;
+	import java.sql.PreparedStatement;
+	import java.sql.ResultSet;
+
+	import jakarta.servlet.RequestDispatcher;
+	import jakarta.servlet.ServletException;
+	import jakarta.servlet.annotation.WebServlet;
+	import jakarta.servlet.http.HttpServlet;
+	import jakarta.servlet.http.HttpServletRequest;
+	import jakarta.servlet.http.HttpServletResponse;
+
+	@WebServlet("/hrlogin")
+	public class HrLogin extends HttpServlet {
+		@Override
+		protected void doPost(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+
+			PrintWriter out = response.getWriter();
+			response.setContentType("text/html");
+
+			if (username.equals("shweta@gmail.com") && password.equals("Shweta@123")) {
+				out.println("Login Successfully..!");
+
+				RequestDispatcher rs = request.getRequestDispatcher("Profile.jsp");
+				rs.include(request, response);
+
+			} else {
+				out.println("Invalid Credentials...!");
+				RequestDispatcher rs = request.getRequestDispatcher("login.html");
+				rs.forward(request, response);
+			}
+
+		}
+		}
+	
+
+

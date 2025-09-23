@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpFlow - Modern Employee Management</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Emp</a>
+            <ul class="nav-links">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="#portals">Portals</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn-nav btn-login">Login</a>
+                <a href="Registration.html" class="btn-nav btn-register">Register</a>
+            </div>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero" id="home">
+            <h1>Next-Gen Workforce Management</h1>
+            <p class="hero-subtitle">Experience the future of employee management with our intelligent, cloud-based platform. Streamline HR operations, boost productivity, and create extraordinary workplace experiences.</p>
+        </section>
+
+        <section class="portal-section" id="portals">
+            <h2>Choose Your Experience</h2>
+            <p class="portal-subtitle">Select your portal and unlock powerful features tailored for your role</p>
+            
+            <div class="portal-grid">
+                <div class="portal-card">
+                    <span class="portal-icon">👨‍💼</span>
+                    <h3>Employee Portal</h3>
+                    <p>Your personal workspace to manage profile, track attendance, apply for leaves, and download payslips with ease and efficiency.</p>
+                    <div class="card-buttons">
+                        <a href="login.html" class="btn btn-primary">🚀 Employee Login</a>
+                        <a href="Registration.html" class="btn btn-secondary">📝 Join Now</a>
+                    </div>
+                </div>
+                
+                <div class="portal-card">
+                    <span class="portal-icon">👩‍💻</span>
+                    <h3>HR Management Hub</h3>
+                    <p>Complete HR control center for managing employees, processing payrolls, handling requests, and generating comprehensive reports.</p>
+                    <div class="card-buttons">
+                        <a href="login.html" class="btn btn-accent">⚡ HR Login</a>
+                        <a href="Registration.html" class="btn btn-secondary">🎯 HR Register</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>25K+</h3>
+                    <p>Active Users</p>
+                </div>
+                <div class="stat-item">
+                    <h3>99.9%</h3>
+                    <p>Uptime</p>
+                </div>
+                <div class="stat-item">
+                    <h3>750+</h3>
+                    <p>Companies</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>Support</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <h2>Powerful Features</h2>
+            <p class="features-subtitle">Everything you need for modern workforce management</p>
+            
+            <div class="features-container">
+                <div class="feature-section">
+                    <div class="section-header">
+                        <span class="section-icon">👤</span>
+                        <h3 class="section-title">Employee Features</h3>
+                    </div>
+                    <ul class="feature-list">
+                        <li><a href="directory">Personal Profile Management</li>
+                        <li>Leave Application System</li>
+                        <li>Attendance Tracking & Reports</li>
+                        <li>Payslip Download Portal</li>
+                        <li>Performance Dashboard</li>
+                        <li>Document Management</li>
+                    </ul>
+                </div>
+
+                <div class="feature-section">
+                    <div class="section-header">
+                        <span class="section-icon">⚙</span>
+                        <h3 class="section-title">HR Management</h3>
+                    </div>
+                    <ul class="feature-list">
+                        <li><a href="directory">Complete Employee Directory</a></li>
+                        <li>Advanced Leave Management</li>
+                        <li>Automated Payroll Processing</li>
+                        <li>Comprehensive Attendance System</li>
+                        <li>Recruitment & Onboarding</li>
+                       
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>EmpFlow</h4>
+                    <p>Revolutionizing workforce management with cutting-edge technology and intuitive design.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <p><a href="#home">Home</a></p>
+                    <p><a href="#portals">Portals</a></p>
+                    <p><a href="#features">Features</a></p>
+                    <p><a href="#contact">Contact</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <p><a href="#">Help Center</a></p>
+                    <p><a href="#">Documentation</a></p>
+                    <p><a href="#">Live Chat</a></p>
+                    <p><a href="#">Privacy Policy</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <p><a href="#">LinkedIn</a></p>
+                    <p><a href="#">Twitter</a></p>
+                    <p><a href="#">Facebook</a></p>
+                    <p><a href="#">Instagram</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Emp. All rights reserved. | Empowering the future of work.</p>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

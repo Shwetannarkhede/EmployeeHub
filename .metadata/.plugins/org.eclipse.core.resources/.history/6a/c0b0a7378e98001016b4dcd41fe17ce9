@@ -1,0 +1,43 @@
+package com.jbk;
+
+
+	import java.io.IOException;
+	import java.sql.Connection;
+	import java.sql.DriverManager;
+	import java.sql.PreparedStatement;
+	import java.sql.ResultSet;
+	import jakarta.servlet.RequestDispatcher;
+	import jakarta.servlet.ServletException;
+	import jakarta.servlet.annotation.WebServlet;
+	import jakarta.servlet.http.HttpServlet;
+	import jakarta.servlet.http.HttpServletRequest;
+	import jakarta.servlet.http.HttpServletResponse;
+
+	@WebServlet("/directory")
+	public class Directory extends HttpServlet {
+	    @Override
+	    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	            throws ServletException, IOException {
+
+	        try {
+	            Class.forName("com.mysql.cj.jdbc.Driver");
+	            Connection conn = DriverManager.getConnection(
+	                "jdbc:mysql://localhost:8000/emp_project", "root", "Shweta@123");
+
+	            PreparedStatement ps = conn.prepareStatement("SELECT * FROM registration");
+	            ResultSet rs = ps.executeQuery();
+
+	            request.setAttribute("resultSet", rs);
+
+	            RequestDispatcher rd = request.getRequestDispatcher("/directory.jsp");
+	            rd.forward(request, response);
+
+	            conn.close();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            response.getWriter().println("Error: " + e.getMessage());
+	        }
+	    }
+	}
+
+}
